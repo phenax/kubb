@@ -1,6 +1,5 @@
-import { File, Function, FunctionParams } from '@kubb/react'
-
 import type { HttpMethod } from '@kubb/oas'
+import { File, Function, FunctionParams } from '@kubb/react'
 import type { ReactNode } from 'react'
 
 type Props = {
@@ -18,9 +17,7 @@ type Props = {
 export function MockWithFaker({ baseURL = '', name, fakerName, typeName, url, method }: Props): ReactNode {
   const params = FunctionParams.factory({
     data: {
-      type: `${typeName} | ((
-        info: Parameters<Parameters<typeof http.${method}>[1]>[0],
-      ) => Response)`,
+      type: `${typeName} | Parameters<typeof http.${method}>[1]`,
       optional: true,
     },
   })
